@@ -1,0 +1,5 @@
+Ninfarno;Ninfarno;0000
+Carlos Ayala;Carlos;0001
+Luis Mendoza;Luis;0002
+Jose Armando;Mandos;0003
+Luis Felipe;Felipe;0004

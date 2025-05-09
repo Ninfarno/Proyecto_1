@@ -1,0 +1,25 @@
+ONLINE;0001;Lunes;Morelia;Ciudad de Mexico;52;16:00;500
+ONLINE;0002;Lunes;Toronto;Morelia;56;09:40;2000
+ONLINE;0003;Martes;Ciudad de Mexico;Guadalajara;48;12:30;450
+ONLINE;0004;Martes;Guadalajara;Morelia;38;14:15;400
+ONLINE;0005;Miércoles;Morelia;Cancun;60;06:00;800
+ONLINE;0006;Miércoles;Cancun;Toronto;40;10:45;2200
+ONLINE;0007;Jueves;Ciudad de Mexico;Monterrey;35;08:20;700
+ONLINE;0008;Jueves;Monterrey;Ciudad de Mexico;36;11:10;680
+ONLINE;0009;Viernes;Morelia;Tijuana;50;07:30;950
+ONLINE;0010;Viernes;Tijuana;Morelia;48;17:25;900
+ONLINE;0011;Sábado;Cancun;Guadalajara;42;13:10;850
+ONLINE;0012;Sábado;Guadalajara;Cancun;40;15:40;840
+ONLINE;0013;Domingo;Morelia;Puerto Vallarta;39;10:00;600
+ONLINE;0014;Domingo;Puerto Vallarta;Morelia;41;18:30;610
+ONLINE;0015;Lunes;Ciudad de Mexico;Houston;55;09:00;2500
+ONLINE;0016;Martes;Houston;Ciudad de Mexico;57;13:50;2450
+ONLINE;0017;Miércoles;Morelia;Dallas;44;07:45;2100
+ONLINE;0018;Jueves;Dallas;Morelia;43;16:20;2050
+ONLINE;0019;Viernes;Ciudad de Mexico;New York;47;06:30;3200
+ONLINE;0020;Viernes;New York;Ciudad de Mexico;46;22:10;3150
+ONLINE;0021;Sábado;Guadalajara;Los Angeles;60;08:00;3000
+ONLINE;0022;Sábado;Los Angeles;Guadalajara;60;19:00;2950
+ONLINE;0023;Domingo;Morelia;San Francisco;55;12:00;3100
+ONLINE;0024;Domingo;San Francisco;Morelia;54;23:15;3050
+ONLINE;0025;Lunes;Ciudad de Mexico;Morelia;40;18:45;500
