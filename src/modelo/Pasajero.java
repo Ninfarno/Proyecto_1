@@ -4,11 +4,28 @@ import java.util.*;
 
 public class Pasajero extends Usuario {
     private Map<String, List<Integer>> vuelosTomados;
+    private String dni;
+    public String getDni() {
+        return dni;
+    }
+
 
     public Pasajero(String nombre, String usuario, String contrasena) {
         super(nombre, usuario, contrasena);
         this.vuelosTomados = new HashMap<>();
     }
+
+    public static Pasajero desdeLineaArchivo(String linea) {
+        String[] partes = linea.split(";");
+        if (partes.length < 3) return null;
+
+        String nombre = partes[0];
+        String correo = partes[1];
+        String dni = partes[2];
+
+        return new Pasajero(nombre, correo, dni); // Ajusta si tienes más campos
+    }
+
 
     public void agregarVueloTomado(String vueloId, List<Integer> asientos) {
         vuelosTomados.computeIfAbsent(vueloId, k -> new ArrayList<>()).addAll(asientos);

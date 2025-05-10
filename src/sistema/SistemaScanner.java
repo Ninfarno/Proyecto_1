@@ -4,12 +4,18 @@ import java.util.Scanner;
 
 public class SistemaScanner {
 
-    private static Scanner scanner = new Scanner(System.in);
-
+    public static Scanner scanner = new Scanner(System.in);
+    public static class EsperarEnter{
+    }
     public static Object Sc(Class<?> Tipo) {
         while (true) {
-            String Respuesta = scanner.nextLine();
             try {
+                if (Tipo == EsperarEnter.class) {
+                    System.out.println("Presione enter para continuar... ");
+                    scanner.nextLine(); // Espera la entrada del usuario
+                    return null;
+                }
+                String Respuesta = scanner.nextLine();
                 if (Tipo == String.class) {
                     return Respuesta;
                 } else if (Tipo == double.class) {

@@ -247,6 +247,7 @@ public class SistemaReservas {
                 System.out.println(vuelo);
             }
         }
+        SistemaScanner.Sc(EsperarEnter.class);
     }
 
 
@@ -316,6 +317,8 @@ public class SistemaReservas {
                     return;
                 }
 
+                // 🔄 Actualizar la matriz con base en las reservas existentes
+                SistemaDeDatos.actualizarMatrizDesdeReservas(v);
                 mostrarMatrizDeAsientos(v);
 
                 System.out.print("¿Asientos a reservar? (ej: 1;3;5): ");
@@ -327,22 +330,30 @@ public class SistemaReservas {
                 for (String s : partes) {
                     try {
                         int asiento = Integer.parseInt(s.trim());
+
                         if (asiento < 1 || asiento > v.getCapacidad()) {
                             System.out.println("Número de asiento inválido: " + asiento);
-                            System.out.print("Desea reservar el resto? Si/No: ");
-                            if((boolean) Sc(boolean.class)){
-                                continue;
-                            }
+                            System.out.print("¿Desea reservar el resto? Si/No: ");
+                            if ((boolean) Sc(boolean.class)) continue;
                             return;
                         }
+
+                        // 🚫 Verificar si el asiento ya fue reservado por otro pasajero
+                        if (SistemaDeDatos.asientoYaReservado(v, asiento)) {
+                            System.out.println("El asiento " + asiento + " ya fue reservado.");
+                            System.out.print("¿Desea reservar el resto? Si/No: ");
+                            if ((boolean) Sc(boolean.class)) continue;
+                            return;
+                        }
+
+                        // 🚫 Verificar si el asiento ya está ocupado en la matriz
                         if (v.getAsientos()[asiento - 1]) {
                             System.out.println("Asiento ya ocupado: " + asiento);
-                            System.out.print("Desea reservar el resto? Si/No: ");
-                            if((boolean) Sc(boolean.class)){
-                                continue;
-                            }
+                            System.out.print("¿Desea reservar el resto? Si/No: ");
+                            if ((boolean) Sc(boolean.class)) continue;
                             return;
                         }
+
                         seleccionados.add(asiento);
                     } catch (NumberFormatException e) {
                         System.out.println("Formato inválido: " + s);
@@ -350,17 +361,23 @@ public class SistemaReservas {
                     }
                 }
 
+                if (seleccionados.isEmpty()) {
+                    System.out.println("No se seleccionaron asientos válidos.");
+                    return;
+                }
+
                 Ticket ticket = v.reservar(pasajero, seleccionados);
 
                 if (ticket != null) {
                     System.out.println("Reserva exitosa. Asientos reservados: " + seleccionados);
-                    System.out.println("Confirmar reserva: ");
-                    if((boolean) Sc(boolean.class)) {
+                    System.out.println("¿Desea confirmar reserva? Si/No:");
+                    if ((boolean) Sc(boolean.class)) {
                         pasajero.agregarVueloTomado(v.getId(), seleccionados);
                         guardarPasajeroEnArchivo(pasajero);
+                        SistemaDeDatos.guardarReservasEnArchivo(pasajero, v, seleccionados); // ✅ Guardar en reservas.txt
                         ticket.imprimir();
-                    }else {
-                        System.out.println("No se pudo realizar la reserva");
+                    } else {
+                        System.out.println("Reserva cancelada por el usuario.");
                     }
                 } else {
                     System.out.println("No se pudo realizar la reserva.");
@@ -372,6 +389,9 @@ public class SistemaReservas {
         System.out.println("Vuelo no encontrado.");
     }
 
+
+
+
     private void borrarVuelo(Pasajero pasajero) {
         if (pasajero.getVuelosTomados().isEmpty()) {
             System.out.println("No tiene vuelos reservados para cancelar.");
@@ -382,9 +402,35 @@ public class SistemaReservas {
         System.out.print("Ingrese el ID del vuelo que desea cancelar: ");
         String id = (String) Sc(String.class);
 
+        // Obtener el vuelo desde la lista global
+        Vuelo vueloACancelar = null;
+        for (Vuelo v : vuelos) {
+            if (v.getId().equalsIgnoreCase(id)) {
+                vueloACancelar = v;
+                break;
+            }
+        }
+
+        if (vueloACancelar == null) {
+            System.out.println("No se encontró el vuelo con ese ID.");
+            return;
+        }
+
+        // Cancelar desde el objeto pasajero
         pasajero.cancelarVuelo(id);
+
+        // Guardar cambios en archivo de pasajeros
         guardarPasajeroEnArchivo(pasajero);
+
+        // Eliminar la reserva del archivo de reservas
+        SistemaDeDatos.eliminarReserva(pasajero, vueloACancelar);  // <--- Aquí se usa la función que te pasé
+
+        // (Opcional) Actualizar matriz de asientos en memoria
+        SistemaDeDatos.actualizarMatrizDesdeReservas(vueloACancelar);
+
+        System.out.println("Reserva cancelada correctamente.");
     }
+
 
 
 

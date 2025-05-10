@@ -1,1 +1,2 @@
-Luis Mendoza;Luis;0000
+AAA;Luis;0001
+Carlos;Carlos;1234;0003:4;0001:1:2:3

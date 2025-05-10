@@ -54,6 +54,10 @@ public class Vuelo {
         this.motivoCancelacion = motivo;
     }
 
+    public String getPrecio() {
+        return Precio[contador] + "";
+    }
+
     public String getId() {
         return id;
     }

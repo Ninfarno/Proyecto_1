@@ -1,0 +1,3 @@
+
+Carlos;Mazatlan -> Tijuana;1;2;3
+Carlos;Cancun -> Cancun;4
