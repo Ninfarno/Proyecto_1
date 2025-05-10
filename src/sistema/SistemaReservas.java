@@ -317,7 +317,7 @@ public class SistemaReservas {
                     return;
                 }
 
-                // 🔄 Actualizar la matriz con base en las reservas existentes
+                // Actualizar la matriz con base en las reservas existentes
                 SistemaDeDatos.actualizarMatrizDesdeReservas(v);
                 mostrarMatrizDeAsientos(v);
 
@@ -338,7 +338,7 @@ public class SistemaReservas {
                             return;
                         }
 
-                        // 🚫 Verificar si el asiento ya fue reservado por otro pasajero
+                        // Verificar si el asiento ya fue reservado por otro pasajero
                         if (SistemaDeDatos.asientoYaReservado(v, asiento)) {
                             System.out.println("El asiento " + asiento + " ya fue reservado.");
                             System.out.print("¿Desea reservar el resto? Si/No: ");
@@ -346,7 +346,7 @@ public class SistemaReservas {
                             return;
                         }
 
-                        // 🚫 Verificar si el asiento ya está ocupado en la matriz
+                        // Verificar si el asiento ya está ocupado en la matriz
                         if (v.getAsientos()[asiento - 1]) {
                             System.out.println("Asiento ya ocupado: " + asiento);
                             System.out.print("¿Desea reservar el resto? Si/No: ");
@@ -423,7 +423,7 @@ public class SistemaReservas {
         guardarPasajeroEnArchivo(pasajero);
 
         // Eliminar la reserva del archivo de reservas
-        SistemaDeDatos.eliminarReserva(pasajero, vueloACancelar);  // <--- Aquí se usa la función que te pasé
+        SistemaDeDatos.eliminarReserva(pasajero, vueloACancelar);
 
         // (Opcional) Actualizar matriz de asientos en memoria
         SistemaDeDatos.actualizarMatrizDesdeReservas(vueloACancelar);
