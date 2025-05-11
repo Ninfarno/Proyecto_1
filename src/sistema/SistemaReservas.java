@@ -64,28 +64,46 @@ public class SistemaReservas {
 
     public Pasajero iniciarSesionPasajero() {
         System.out.print("Usuario: ");
-        String usuario = (String) Sc(String.class);
-        System.out.print("Contraseña: ");
-        String contrasena = (String) Sc(String.class);
+        String usuarioInput = ((String) Sc(String.class)).trim().toLowerCase(); // Normalizar usuario
 
+        // Buscar si el usuario ya existe (ignorando mayúsculas/minúsculas)
         for (Pasajero p : pasajeros) {
-            if (p.iniciarSesion(usuario, contrasena)) {
-                System.out.println("Bienvenido " + p.getNombre());
-                return p;
+            if (p.getUsuario().trim().toLowerCase().equals(usuarioInput)) {
+                // Usuario encontrado, permitir hasta 3 intentos
+                int intentos = 3;
+                while (intentos > 0) {
+                    System.out.print("Contraseña: ");
+                    String contrasena = ((String) Sc(String.class)).trim();
+
+                    if (p.iniciarSesion(p.getUsuario(), contrasena)) {
+                        System.out.println("Bienvenido " + p.getNombre());
+                        return p;
+                    } else {
+                        intentos--;
+                        System.out.println("Contraseña incorrecta. Intentos restantes: " + intentos);
+                    }
+                }
+                System.out.println("Demasiados intentos fallidos. Sesión cancelada.");
+                return null;
             }
         }
 
-        System.out.println("Usuario no registrado.\n");
+        // Usuario no encontrado, proceder al registro
+        System.out.println("Usuario no registrado. Procediendo al registro...");
         System.out.print("Nombre completo: ");
-        String nombre = (String) Sc(String.class);
+        String nombre = ((String) Sc(String.class)).trim();
 
-        Pasajero nuevo = new Pasajero(nombre, usuario, contrasena);
+        System.out.print("Cree una contraseña: ");
+        String nuevaContrasena = ((String) Sc(String.class)).trim();
+
+        Pasajero nuevo = new Pasajero(nombre, usuarioInput, nuevaContrasena);
         pasajeros.add(nuevo);
+        guardarPasajeroEnArchivo(nuevo); // Asegúrate de que este método funcione correctamente
 
         System.out.println("Pasajero registrado exitosamente. \n\nBienvenido " + nombre);
-        menuPasajero(nuevo);
         return nuevo;
     }
+
 
     public void menuEmpleado(Empleado empleado) {
         int opcion;
@@ -107,7 +125,10 @@ public class SistemaReservas {
                 case 3 -> cancelarVuelo();
                 case 4 -> mostrarVuelos();
                 case 5 -> registrarEmpleado();
-                case 6 -> System.out.println("Sesión cerrada.");
+                case 6 -> {
+                    System.out.println("Sesión cerrada.");
+                    return;
+                }
                 default -> System.out.println("Opción inválida.");
             }
         } while (opcion != 6);

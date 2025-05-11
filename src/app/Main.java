@@ -23,7 +23,10 @@ public class Main {
             switch (opcion) {
                 case 1 -> menuLoginEmpleado(sistema);
                 case 2 -> menuLoginPasajero(sistema);
-                case 3 -> System.out.println("Gracias por usar el sistema.");
+                case 3 -> {
+                    System.out.println("Gracias por usar el sistema.");
+                    System.exit(0);
+                }
                 default -> System.out.println("Opción inválida.");
             }
         } while (opcion != 3);
