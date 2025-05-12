@@ -27,6 +27,37 @@ Este proyecto es un sistema de gestión de vuelos para la aerolínea ficticia **
 
 ## Estructura del Proyecto
 
+Está organizado en tres capas principales que trabajan de forma integrada:
+
+**1. Capa de Interfaz (Frontend)**
+- Gestionada por la clase `Main`, muestra menús interactivos en consola
+- Ofrece dos flujos principales: modo empleado (administrativo) y modo pasajero (reservas)
+- Utiliza `SistemaScanner` para validar y procesar todas las entradas del usuario
+
+**2. Núcleo del Sistema (Backend)**
+- `SistemaReservas` actúa como cerebro operativo:
+  * Coordina la autenticación de usuarios
+  * Gestiona el ciclo completo de vuelos (creación, cancelación, consulta)
+  * Administra el proceso de reservas y asignación de asientos
+- Implementa lógica de negocio con:
+  * Validación de reglas (asientos disponibles, credenciales)
+  * Cálculo automático de precios
+  * Generación de tickets
+
+**3. Gestión de Datos**
+- Modelo de entidades (`Usuario`, `Vuelo`, `Ticket`) con relaciones claras
+- Sistema de persistencia basado en archivos planos (.txt)
+  * Datos organizados en 4 archivos principales
+  * Mecanismos de carga/guardado automáticos
+  * Formato CSV personalizado para estructuración
+
+**Características Clave:**
+- Autenticación dual (empleados/pasajeros)
+- Visualización de asientos en formato matriz
+- Cancelación de vuelos con registro de motivos
+- Reservas con selección exacta de ubicaciones
+- Sistema de ocupación progresiva automática
+
 ---
 
 ## Requisitos
