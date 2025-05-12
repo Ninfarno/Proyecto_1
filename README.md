@@ -1,4 +1,4 @@
-〝 P R O Y E C T O   1  .ᐟ 〞
+ P R O Y E C T O   1   .ᐟ 
 
 Integrantes:
 - Luis Mendoza Madriz
