@@ -31,7 +31,7 @@ Este proyecto es un sistema de gestión de vuelos para la aerolínea ficticia **
 
 ## Requisitos
 
-- Java 8 o superior
+- Java 13 o superior
 - IDE recomendado: IntelliJ IDEA, Eclipse o VS Code con soporte Java
 - Crear un directorio `Datos/` en la raíz para almacenar los archivos `.txt`
 
