@@ -149,9 +149,9 @@ public class Vuelo {
                 }
 
                 try {
-                    Thread.sleep(60000);
+                    Thread.sleep(3000); //Cada 30 segundos asientos
                 } catch (InterruptedException e) {
-                    System.out.println("Hilo interrumpido: " + e.getMessage());
+                    //System.out.println("Hilo interrumpido: " + e.getMessage());
                     break;
                 }
             }
