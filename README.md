@@ -58,3 +58,4 @@ Este proyecto es un sistema de gestión de vuelos para la aerolínea ficticia **
 
 - Toda la información de pasajeros se guarda en `Datos/pasajeros.txt`.
 - Cada línea sigue el formato:
+  
