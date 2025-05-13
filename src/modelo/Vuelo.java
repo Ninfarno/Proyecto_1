@@ -136,7 +136,9 @@ public class Vuelo {
     public void iniciarOcupacionAleatoria() {
         new Thread(() -> {
             Random random = new Random();
-            while (!cancelado && ocupados < capacidad) {
+            int repeticiones = 0;
+
+            while (!cancelado && ocupados < capacidad && repeticiones < 10) {
                 int intentos = random.nextInt(5) + 1;
 
                 for (int i = 0; i < intentos; i++) {
@@ -148,15 +150,17 @@ public class Vuelo {
                     if (ocupados >= capacidad) break;
                 }
 
+                repeticiones++;
+
                 try {
-                    Thread.sleep(3000); //Cada 30 segundos asientos
+                    Thread.sleep(3000); // Espera 3 segundos entre cada intento
                 } catch (InterruptedException e) {
-                    //System.out.println("Hilo interrumpido: " + e.getMessage());
                     break;
                 }
             }
         }).start();
     }
+
 
     @Override
     public String toString() {

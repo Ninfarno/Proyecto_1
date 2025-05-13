@@ -161,6 +161,9 @@ public class SistemaReservas {
         agregarVueloOrdenado(nuevoVuelo);
         guardarVueloEnArchivo(nuevoVuelo);
 
+        vuelos.clear();
+        cargarVuelosDesdeArchivo(vuelos);
+
         System.out.println("Vuelo creado exitosamente:\n" + nuevoVuelo);
     }
 
@@ -207,6 +210,13 @@ public class SistemaReservas {
                     return;
                 }
 
+                double porcentajeOcupacion = ((double) v.getOcupados() / v.getCapacidad()) * 100;
+
+                if (porcentajeOcupacion >= 30.0) {
+                    System.out.printf("El vuelo no puede ser cancelado porque está ocupado en un %.2f%%.%n", porcentajeOcupacion);
+                    return;
+                }
+
                 System.out.print("Motivo de la cancelación: ");
                 String motivo = (String) Sc(String.class);
                 v.cancelar(motivo);
@@ -245,8 +255,6 @@ public class SistemaReservas {
     }
 
     private void mostrarVuelos() {
-        vuelos.clear();
-        cargarVuelosDesdeArchivo(vuelos);
 
         vuelosPorDia.clear();
 

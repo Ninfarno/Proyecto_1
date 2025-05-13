@@ -1,3 +1,28 @@
-
 Carlos;Mazatlan -> Tijuana;1;2;3
 Carlos;Cancun -> Cancun;4
+Ana;Guadalajara -> Monterrey;1;2
+Luis;Tijuana -> La Paz;3;4;5
+Marta;CDMX -> Oaxaca;6
+Pedro;Chihuahua -> Cancún;1;2;3;4
+Lucía;Mérida -> Villahermosa;7;8
+José;Querétaro -> CDMX;9
+Elena;Morelia -> Toluca;2;3
+Mario;Veracruz -> Puebla;5
+Sandra;Durango -> Saltillo;6;7
+Laura;CDMX -> Tapachula;10;11;12
+Carmen;Mazatlán -> Los Cabos;1;2
+Alberto;Tampico -> Monterrey;3
+Paola;Acapulco -> Morelia;4;5
+Rafael;CDMX -> Guadalajara;6
+Valeria;Cancún -> CDMX;1;2;3
+Eduardo;León -> Zacatecas;7
+Fernanda;Tijuana -> Hermosillo;8;9
+Gabriel;Puebla -> Tuxtla Gutiérrez;10
+Sofía;CDMX -> Aguascalientes;2;3
+Bruno;Monterrey -> Guadalajara;1;2;3
+Daniela;Mazatlán -> La Paz;4
+Ignacio;Toluca -> Oaxaca;5;6
+Jimena;Villahermosa -> Cancún;7;8
+Renata;Chihuahua -> CDMX;9;10;11
+Tomás;Querétaro -> Mazatlán;12;13
+Carlos;Morelia -> Toluca;1;61
