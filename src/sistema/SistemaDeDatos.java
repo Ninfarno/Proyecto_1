@@ -311,6 +311,8 @@ public class SistemaDeDatos {
 
 
     public static void eliminarVueloDeArchivo(String idVueloAEliminar, List<Vuelo> vuelos) {
+        boolean encontrado = false;
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("Datos/vuelos.txt"))) {
             for (Vuelo vuelo : vuelos) {
                 if (!vuelo.getId().equals(idVueloAEliminar)) {
@@ -318,12 +320,22 @@ public class SistemaDeDatos {
                     bw.write(estado + ";" + vuelo.getId() + ";" + vuelo.getDia() + ";" + vuelo.getOrigen() + ";" +
                             vuelo.getDestino() + ";" + vuelo.getCapacidad() + ";" + vuelo.getHora() + ";" + vuelo.getPrecio());
                     bw.newLine();
+                } else {
+                    encontrado = true;
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error al actualizar archivo de vuelos: " + e.getMessage());
+            System.out.println("❌ Error al actualizar archivo de vuelos: " + e.getMessage());
+            return;
+        }
+
+        if (encontrado) {
+            System.out.println("✅ Vuelo con ID '" + idVueloAEliminar + "' eliminado exitosamente.");
+        } else {
+            System.out.println("⚠️ No se encontró un vuelo con el ID '" + idVueloAEliminar + "'.");
         }
     }
+
     public static void actualizarArchivoDeVuelos(List<Vuelo> vuelos) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("Datos/vuelos.txt"))) {
             // Recorremos la lista de vuelos y los escribimos en el archivo

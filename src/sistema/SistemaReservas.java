@@ -171,8 +171,21 @@ public class SistemaReservas {
         mostrarVuelos();
         System.out.print("\nEscriba el Id del vuelo a eliminar: ");
         String id = (String) Sc(String.class);
+
+        // Elimina el vuelo del archivo
         eliminarVueloDeArchivo(id, vuelos);
+
+        // Cargar vuelos actualizados desde el archivo
+        List<Vuelo> vuelosActualizados = new ArrayList<>();
+        cargarVuelosDesdeArchivo(vuelosActualizados);
+
+        // Actualiza la lista en memoria con los vuelos cargados sin limpiar 'vuelos'
+        vuelos.clear();
+        vuelos.addAll(vuelosActualizados);
+
+        return;
     }
+
 
     public void agregarVueloOrdenado(Vuelo nuevoVuelo) {
         String diaNuevo = nuevoVuelo.getDia();
